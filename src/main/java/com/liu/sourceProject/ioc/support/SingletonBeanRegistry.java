@@ -56,4 +56,17 @@ public class SingletonBeanRegistry {
     protected boolean isSingletonCurrentlyInCreation(String beanName) {
         return this.singletonsCurrentlyInCreation.contains(beanName);
     }
+
+    protected Object getSingleton(String beanName, ObjectFactory<?> singletonFactory){
+
+        synchronized (this.singletonObjects){
+            Object singletonObject = this.singletonObjects.get(beanName);
+            if(singletonObject == null){
+                this.singletonsCurrentlyInCreation.add(beanName);
+                singletonObject = singletonFactory.getObject();
+
+            }
+        }
+        return null;
+    }
 }
