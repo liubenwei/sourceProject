@@ -51,7 +51,11 @@ public class SingletonBeanRegistry {
         //单例的bean对象实例都存储在map中，但是map不允许存储null，所以当bean为null时，用NULL_OBJECT代替null存储到map中
         return (singletonObject != NULL_OBJECT) ? singletonObject : null;
     }
-
+    protected void addSingleton(String beanName, Object singletonObject){
+        synchronized (this.singletonObjects){
+            this.singletonObjects.put(beanName,(singletonObject != null) ? singletonObject: null);
+        }
+    }
 
     protected boolean isSingletonCurrentlyInCreation(String beanName) {
         return this.singletonsCurrentlyInCreation.contains(beanName);
