@@ -33,11 +33,13 @@ public class Number130 {
         while (i < col) {
             infect(board, 0, i);
             infect(board, row - 1, i);
+            i++;
         }
         i = 0;
         while (i < row) {
             infect(board, i, 0);
             infect(board, i, col - 1);
+            i++;
         }
         for (i = 0; i < row; i++) {
             for (j = 0; j < col; j++) {
