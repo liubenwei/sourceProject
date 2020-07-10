@@ -25,25 +25,25 @@ package com.liu.sourceProject.leetcode.number100;
 //        著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 public class Number130 {
     public void solve(char[][] board) {
-        if(board == null || board.length == 0 || board[0].length == 0){
-            return ;
+        if (board == null || board.length == 0 || board[0].length == 0) {
+            return;
         }
         int row = board.length, col = board[0].length;
         int i = 0, j = col - 1;
-        while(i < col){
-            infect(board,0,i);
-            infect(board,row - 1,i);
+        while (i < col) {
+            infect(board, 0, i);
+            infect(board, row - 1, i);
         }
         i = 0;
-        while(i < row){
-            infect(board,i,0);
-            infect(board,i,col - 1);
+        while (i < row) {
+            infect(board, i, 0);
+            infect(board, i, col - 1);
         }
-        for(i = 0; i < row; i++){
-            for(j = 0; j < col; j++){
-                if(board[i][j] == 'O'){
+        for (i = 0; i < row; i++) {
+            for (j = 0; j < col; j++) {
+                if (board[i][j] == 'O') {
                     board[i][j] = 'X';
-                }else if(board[i][j] == '1'){
+                } else if (board[i][j] == '1') {
                     board[i][j] = 'O';
                 }
 
@@ -51,15 +51,15 @@ public class Number130 {
         }
     }
 
-    public void infect(char[][] board, int i , int j){
-        if(i < 0 || i >= board.length || j < 0 || j >= board[0].length || board[i][j] != 'O'){
-            return ;
+    public void infect(char[][] board, int i, int j) {
+        if (i < 0 || i >= board.length || j < 0 || j >= board[0].length || board[i][j] != 'O') {
+            return;
         }
         board[i][j] = '1';
-        infect(board,i+1,j);
-        infect(board,i-1,j);
-        infect(board,i,j+1);
-        infect(board,i,j-1);
-        return ;
+        infect(board, i + 1, j);
+        infect(board, i - 1, j);
+        infect(board, i, j + 1);
+        infect(board, i, j - 1);
+        return;
     }
 }
