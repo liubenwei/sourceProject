@@ -1,5 +1,10 @@
 package com.liu.sourceProject.leetcode.number100;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Stack;
+
 //给定一个二维的矩阵，包含 'X' 和 'O'（字母 O）。
 //
 //        找到所有被 'X' 围绕的区域，并将这些区域里所有的 'O' 用 'X' 填充。
@@ -24,10 +29,16 @@ package com.liu.sourceProject.leetcode.number100;
 //        链接：https://leetcode-cn.com/problems/surrounded-regions
 //        著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 public class Number130 {
+
+    public static void main(String[] args) {
+        new ArrayList<>(Arrays.asList(new int[]{1}));
+    }
     public void solve(char[][] board) {
         if (board == null || board.length == 0 || board[0].length == 0) {
             return;
         }
+        List<Integer> res = new ArrayList<>(9);
+        System.out.println(res.size());
         int row = board.length, col = board[0].length;
         int i = 0, j = col - 1;
         while (i < col) {
