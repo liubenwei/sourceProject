@@ -32,22 +32,23 @@ import java.util.List;
 //        著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 public class Number95 {
     public List<TreeNode> generateTrees(int n) {
-        if(n == 0){
+        if (n == 0) {
             return new LinkedList<TreeNode>();
         }
-        return generateTrees(1,n);
+        return generateTrees(1, n);
     }
-    public List<TreeNode> generateTrees(int start, int end){
+
+    public List<TreeNode> generateTrees(int start, int end) {
         List<TreeNode> res = new LinkedList<>();
-        if(start > end){
+        if (start > end) {
             res.add(null);
             return res;
         }
-        for(int i = start; i <= end; i++){
-            List<TreeNode> subLeftTree = generateTrees(start,i - 1);
-            List<TreeNode> subRightTree = generateTrees(i+1,end);
-            for(TreeNode left : subLeftTree){
-                for(TreeNode right: subRightTree){
+        for (int i = start; i <= end; i++) {
+            List<TreeNode> subLeftTree = generateTrees(start, i - 1);
+            List<TreeNode> subRightTree = generateTrees(i + 1, end);
+            for (TreeNode left : subLeftTree) {
+                for (TreeNode right : subRightTree) {
                     TreeNode node = new TreeNode(i);
                     node.left = left;
                     node.right = right;
@@ -58,16 +59,22 @@ public class Number95 {
         return res;
     }
 
-      class TreeNode {
-      int val;
-      TreeNode left;
-      TreeNode right;
-     TreeNode() {}
-      TreeNode(int val) { this.val = val; }
+    class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
         TreeNode(int val, TreeNode left, TreeNode right) {
-          this.val = val;
-         this.left = left;
-         this.right = right;
-      }
-  }
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }
