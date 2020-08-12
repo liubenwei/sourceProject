@@ -3,6 +3,8 @@ package com.liu.sourceProject.myThreadPool.common;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author liu
  * @Date 2020/8/11 19:03
@@ -25,4 +27,18 @@ public class AlarmMessage {
 	private String message;
 
 	private String accessToken;
+	/**
+	 * 对外api接口
+	 */
+	private String apiUrl;
+
+	/**
+	 * 告警时间间隔
+	 */
+	private int alarmTimeInterval = 1;
+
+	/**
+	 * 告警时间间隔单位
+	 */
+	private TimeUnit timeUnit;
 }
