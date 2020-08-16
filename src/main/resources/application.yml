@@ -1,4 +1,13 @@
-zk:
-  url: 127.0.0.1:2181
-  timeout: 1000
-  retry: 3
+#zk:
+#    url: 127.0.0.1:2181
+#    timeout: 1000
+#    retry: 3
+spring:
+    cloud:
+        nacos:
+            discovery:
+                server-addr: 127.0.0.1:8848
+    application:
+        name: source
+server:
+    port: 6060
