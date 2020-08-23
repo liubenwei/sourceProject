@@ -1,6 +1,7 @@
 package com.liu.sourceProject.leetcode.weekCompetition.Number203;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -48,6 +49,20 @@ public class Number1 {
 				res.add(i + 1);
 			}
 		}
+		return res;
+	}
+
+	public List<Integer> mostVisited1(int n, int[] rounds) {
+		int start = rounds[0];
+		int end = rounds[rounds.length - 1];
+		List<Integer> res = new ArrayList<>();
+		if(end < start){
+			end += n;
+		}
+		for(int i = start -1; i < end; i++){
+			res.add( (i% n)+1);
+		}
+		Collections.sort(res);
 		return res;
 	}
 }
