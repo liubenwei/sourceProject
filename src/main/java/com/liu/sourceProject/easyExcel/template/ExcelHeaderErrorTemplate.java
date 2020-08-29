@@ -6,6 +6,8 @@ import lombok.Data;
 /**
  * @author liu
  * @Date 2020/8/29 15:42
+ * 
+ *       错误信息的模板
  */
 @Data
 public class ExcelHeaderErrorTemplate {

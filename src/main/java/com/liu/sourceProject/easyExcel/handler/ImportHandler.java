@@ -1,11 +1,18 @@
 package com.liu.sourceProject.easyExcel.handler;
 
+import java.io.InputStream;
+
 /**
  * @author liu
  * @Date 2020/8/29 15:42
- * excel头部信息错误导出模板
+ *
+ *       excel导入的处理器
  */
-public class ImportHandler extends AbstractImportHandler{
+public interface ImportHandler {
 
-    private String error;
+	default void handle(InputStream excel, Long userId){
+
+	}
+	default void handle(InputStream excel){
+	}
 }

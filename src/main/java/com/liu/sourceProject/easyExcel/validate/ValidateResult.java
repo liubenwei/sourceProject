@@ -3,7 +3,6 @@ package com.liu.sourceProject.easyExcel.validate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.poi.ss.formula.functions.T;
 
 /**
  * @author liu
@@ -18,4 +17,8 @@ public class ValidateResult<T> {
 
 	private Boolean Error = false;
 	private T validateContext;
+
+	public ValidateResult(T validateContext) {
+		this.validateContext = validateContext;
+	}
 }

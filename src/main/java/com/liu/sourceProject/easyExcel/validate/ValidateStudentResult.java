@@ -5,6 +5,10 @@ package com.liu.sourceProject.easyExcel.validate;
  * @Date 2020/8/29 16:00
  */
 
-public class ValidateStudentResult extends ValidateResult<ValidateStudentContext>{
+public class ValidateStudentResult
+		extends ValidateResult<ValidateStudentContext> {
 
+	public ValidateStudentResult(ValidateStudentContext validateStudentContext){
+		super(validateStudentContext);
+	}
 }
