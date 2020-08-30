@@ -1,9 +1,11 @@
 package com.liu.sourceProject;
 
+import org.mybatis.spring.annotation.MapperScan;
+import org.mybatis.spring.annotation.MapperScans;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.DispatcherServlet;
 
 /**
@@ -12,6 +14,7 @@ import org.springframework.web.servlet.DispatcherServlet;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
+@MapperScan({"com.liu.sourceProject.easyExcel.dao"})
 public class SourceBoot {
 	public static void main(String[] args) {
 
