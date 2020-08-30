@@ -8,6 +8,7 @@ import com.liu.sourceProject.easyExcel.service.StudentService;
 import com.liu.sourceProject.easyExcel.template.ExcelHeaderErrorTemplate;
 import com.liu.sourceProject.easyExcel.validate.ValidateStudentContext;
 import com.liu.sourceProject.easyExcel.validate.ValidateStudentResult;
+import com.liu.sourceProject.ioc.annotation.Component;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -37,16 +38,21 @@ public class StudentImportHandler
 			datas = this.importData(excel);
 		} catch (Exception e) {
 			// 如果读取出了异常 直接返回 把文件地址放入redis
-			this.writeErrorToFile();
+			String filePath = this.writeErrorToFile();
+			log.info("文件地址:" + filePath);
 		}
 		ValidateStudentResult validateStudentResult = this.validate(datas);
 
 		// 处理验证结果
 		if (validateStudentResult.getError()) {
 			// 把文件地址写入redis
-			this.writeErrorToFile(datas, validateStudentResult);
+			String filePath = this.writeErrorToFile(datas,
+					validateStudentResult);
+			log.info("文件地址:" + filePath);
 		} else {
-			this.saveToDB(datas);
+			long now = System.currentTimeMillis();
+//			this.saveToDB(datas);
+			log.info("导入时间:"+(System.currentTimeMillis() - now));
 		}
 
 	}
@@ -81,7 +87,7 @@ public class StudentImportHandler
 			validateStudentResult.setError(true);
 		}
 
-		return null;
+		return validateStudentResult;
 	}
 
 	private boolean hasErrorLineNum(ValidateStudentContext validateContext) {
@@ -102,19 +108,22 @@ public class StudentImportHandler
 		// 学号是数据库中不能存在，excel中也不能重复
 		// 先验证excel中的学号是否存在数据库中 findIn 提示已经在数据库中
 		List<Integer> studentNumberErrorNum = new ArrayList<>();
+		//excel的set集合
 		Set<Long> studentNumberSet = datas.stream()
 				.map(ImportForm::getStudentNumber).collect(Collectors.toSet());
 		List<Long> studentNumbers = datas.stream()
 				.map(ImportForm::getStudentNumber).distinct()
 				.collect(Collectors.toList());
 
+		//求交集速度太慢，直接上for循环
 		List<Long> studentNumberList = studentService
 				.findByStudentNumber(studentNumbers);
-		studentNumbers.retainAll(studentNumberList);
 		for (int i = 0; i < datas.size(); i++) {
+			//如果数据库中存在这个学号
 			if (studentNumbers.contains(datas.get(i).getStudentNumber())) {
 				studentNumberErrorNum.add(i);
 			}
+			//如果
 		}
 		// 再验证excel中的学号是否重复 加入map contains判断 提示有重复数据 记录行号
 		// 吧错误信息放到studentNumberErrorNumList里面
@@ -140,7 +149,7 @@ public class StudentImportHandler
 
 	@Override
 	protected void saveToDB(List<ImportForm> datas) {
-		List<Student>  students= datas.stream().map(importForm -> {
+		List<Student> students = datas.stream().map(importForm -> {
 			Student student = new Student();
 			student.setCollegeName(importForm.getCollegeName());
 			student.setStudentName(importForm.getStudentName());
@@ -190,8 +199,39 @@ public class StudentImportHandler
 
 	@Override
 	protected String writeErrorToFile(List<ImportForm> datas,
-			ValidateStudentResult validateContext) {
-		return null;
+			ValidateStudentResult validateStudentResult) {
+
+		// 如果验证过程中发现了错误,则把错误信息写入到excel
+		InputStream inputStream;
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		// 把数据写入到OutputStream
+		EasyExcel.write(outputStream, ImportForm.class).inMemory(Boolean.TRUE)
+				.registerWriteHandler(new StudentWriteHandler(
+						validateStudentResult.getValidateContext()))
+				.sheet("sheet1").doWrite(datas);
+		String filePath = "D:\\tmp\\"
+				+ UUID.randomUUID().toString().replace("-", "");
+		inputStream = new ByteArrayInputStream(outputStream.toByteArray());
+		File file = new File(filePath);
+		int index;
+		byte[] bytes = new byte[1024];
+		FileOutputStream fileOutputStream = null;
+		try {
+			fileOutputStream = new FileOutputStream(filePath);
+			while ((index = inputStream.read(bytes)) != -1) {
+				fileOutputStream.write(bytes, 0, index);
+				fileOutputStream.flush();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				fileOutputStream.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return filePath;
 	}
 
 	private void validateNullField(List<ImportForm> datas,

@@ -46,24 +46,24 @@
         </where>
     </select>
 
-    <insert id="batchInsert" >
-        insert into student(student_name,college_name,student_number) values
-        <foreach collection="list" item="student" index="index" separator=",">
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into student1(student_name,college_name,student_number) values
+        <foreach collection="students" item="student" index="index" separator=",">
             (#{student.studentName},#{student.collegeName},#{student.studentNumber})
         </foreach>
     </insert>
 
-    <select id="findByNames" resultType="java.lang.String">
-        select student_name from student where student_name in
-        <foreach collection="list" item="collegeName" index="index" open="(" close=")" separator=",">
-            #{collegeName}
+    <select id="findByNames" parameterType="java.util.List" resultType="java.lang.String">
+        select distinct college_name from student1 where college_name in
+        <foreach collection="collegeNames" item="item" index="index" open="(" close=")" separator=",">
+            #{item}
         </foreach>
     </select>
 
-    <select id="findByStudentNumbers" resultType="java.lang.Long">
-        select student_number from student where student_number in
-        <foreach collection="list" item="studentNumber" index="index" open="(" close=")" separator=",">
-            #{studentNumber}
+    <select id="findByStudentNumbers" parameterType="java.util.List" resultType="java.lang.Long">
+        select student_number from student1 where student_number in
+        <foreach collection="studentNumbers" item="item" index="index" open="(" close=")" separator=",">
+            #{item}
         </foreach>
     </select>
     <!--新增所有列-->

@@ -6,6 +6,7 @@ import com.liu.sourceProject.easyExcel.exception.ImportExcelException;
 import com.liu.sourceProject.easyExcel.form.ImportForm;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ import java.util.Map;
  */
 @Data
 public class StudentDataWorker extends AnalysisEventListener<ImportForm> {
-    private List<ImportForm> datas;
+    private List<ImportForm> datas = new ArrayList<>();
 
     @Override
     public void invokeHeadMap(Map<Integer, String> headMap, AnalysisContext context) {

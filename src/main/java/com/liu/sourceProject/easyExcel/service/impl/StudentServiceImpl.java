@@ -41,7 +41,7 @@ public class StudentServiceImpl implements StudentService {
 			return ;
 		}
 		List<List<Student>> streamList = new ArrayList<>();
-		for(int i =0 ; i < students.size(); i++){
+		for(int i =0 ; i < students.size(); i+=1000){
 			int j = Math.min( (i+1000),students.size() );
 			List<Student> subList = students.subList(i,j);
 			streamList.add(subList);
