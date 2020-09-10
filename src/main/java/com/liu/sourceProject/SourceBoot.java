@@ -14,7 +14,7 @@ import org.springframework.web.servlet.DispatcherServlet;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@MapperScan({"com.liu.sourceProject.easyExcel.dao"})
+@MapperScan({"com.liu.sourceProject.easyExcel.dao","com.liu.sourceProject.mysql.encode.dao"})
 public class SourceBoot {
 	public static void main(String[] args) {
 

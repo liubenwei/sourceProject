@@ -11,10 +11,11 @@ import java.util.List;
 public class GCCount {
     public static void main(String[] args) {
         GCCount count = new GCCount();
+        GCCount.reportGc();
 
     }
-    private static void reportGc(){
+    public static void reportGc(){
         List<GarbageCollectorMXBean> gcs = ManagementFactory.getGarbageCollectorMXBeans();
-
+        System.out.println(gcs.size());
     }
 }
