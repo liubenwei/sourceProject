@@ -1,6 +1,6 @@
 package com.liu.sourceProject.leetcode.number100;
 
-import leetcode.editor.en.ListNode;
+import com.liu.sourceProject.leetcode.ListNode;
 
 /**
  * @author liu
