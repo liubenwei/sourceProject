@@ -15,7 +15,8 @@ public class LocalDateTimeTest {
 				.ofPattern("yyyy-MM-dd HH:mm:ss");
 		System.out.println(now.toLocalDate() + " " + now.toLocalTime());
 		String timeToString = dateTimeFormatter.format(now);
-		String string = DateTimeFormatter.ofPattern("HH:mm:ss").format(now.toLocalTime());
+		String string = DateTimeFormatter.ofPattern("HH:mm:ss")
+				.format(now.toLocalTime());
 		System.out.println(timeToString);
 		System.out.println(string);
 	}

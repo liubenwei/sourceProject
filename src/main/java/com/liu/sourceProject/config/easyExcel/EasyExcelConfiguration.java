@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class EasyExcelConfiguration {
-    @Bean
-    public StudentImportHandler studentImportHandler(){
-        return new StudentImportHandler();
-    }
+	@Bean
+	public StudentImportHandler studentImportHandler() {
+		return new StudentImportHandler();
+	}
 }
