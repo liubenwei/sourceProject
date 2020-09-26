@@ -9,5 +9,6 @@ public class Source {
         Object object;
         String string = "fasdf";
         string.charAt(1);
+
     }
 }
