@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
  */
 public class IdCardTest {
     public static void main(String[] args) {
+        System.out.println("中共问");
         String reges = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[\\s\\S]{8,16}$";
         Pattern passwordPattern = Pattern.compile(reges);
         Matcher matcher = passwordPattern.matcher("iiuie01?");
