@@ -1,4 +1,5 @@
 package com.liu.sourceProject.leetcode;
+import static org.junit.jupiter.api.Assertions.*;
 
 import lombok.Data;
 
