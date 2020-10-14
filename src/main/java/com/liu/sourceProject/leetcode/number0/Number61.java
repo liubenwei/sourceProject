@@ -2,6 +2,10 @@ package com.liu.sourceProject.leetcode.number0;
 
 import com.liu.sourceProject.leetcode.ListNode;
 
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashSet;
+
 /**
  * @author liu
  * @Date 2020/10/14 14:00
