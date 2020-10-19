@@ -23,6 +23,7 @@ import com.liu.sourceProject.leetcode.ListNode;
  */
 public class Number19 {
     public ListNode removeNthFromEnd(ListNode head, int n) {
+
         ListNode newHead = new ListNode(0);
         newHead.next = head;
         ListNode left = head, right = head;
