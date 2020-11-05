@@ -1,5 +1,7 @@
 package com.liu.sourceProject.leetcode.number900;
 
+import lombok.Data;
+
 /**
  * @author liu
  * @Date 2020/11/3 17:59
@@ -41,6 +43,7 @@ package com.liu.sourceProject.leetcode.number900;
  * 链接：https://leetcode-cn.com/problems/valid-mountain-array
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
+@Data
 public class Number941 {
     public boolean validMountainArray(int[] A) {
         int length = A.length ;
