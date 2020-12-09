@@ -18,4 +18,15 @@ public class Number62 {
 		}
 		return matrix[m - 1][n - 1];
 	}
+
+	public int uniquePaths1(int m, int n) {
+		int[] nums = new int[n];
+		nums[0] = 1;
+		for(int i =0 ; i < m; i++){
+			for(int j = 1; j < n; j++){
+				nums[j] = nums[j] + nums[j - 1];
+			}
+		}
+		return nums[n - 1];
+	}
 }
