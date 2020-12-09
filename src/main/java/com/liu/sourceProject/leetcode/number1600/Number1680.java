@@ -1,5 +1,7 @@
 package com.liu.sourceProject.leetcode.number1600;
 
+import cn.hutool.core.util.ArrayUtil;
+
 /**
  * @author liu
  * @Date 2020/12/9 14:31
@@ -11,6 +13,7 @@ public class Number1680 {
 	}
 
 	public int concatenatedBinary(int n) {
+		ArrayUtil.length(null)
 		int mod = (int) 1e9 + 7;
 		long ans = 0;
 		for (int i = 1; i <= n; i++) {
