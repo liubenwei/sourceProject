@@ -1,5 +1,7 @@
 package com.liu.sourceProject.leetcode.number800;
 
+import java.util.Queue;
+
 /**
  * @author liu
  * @Date 2020/12/10 8:51
@@ -10,7 +12,8 @@ public class Number860 {
         System.out.println(b);
     }
     public boolean lemonadeChange(int[] bills) {
-        int fiveCount = 0, tenCount = 0;
+        int fiveCount = 0;
+        int tenCount = 0;
         for(int bill : bills){
             if(bill == 5){
                 fiveCount++;

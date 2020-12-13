@@ -13,7 +13,7 @@ public class Number1680 {
 	}
 
 	public int concatenatedBinary(int n) {
-		ArrayUtil.length(null)
+		ArrayUtil.length(null);
 		int mod = (int) 1e9 + 7;
 		long ans = 0;
 		for (int i = 1; i <= n; i++) {
