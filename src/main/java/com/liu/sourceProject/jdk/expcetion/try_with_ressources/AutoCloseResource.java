@@ -18,3 +18,4 @@ public class AutoCloseResource implements AutoCloseable {
 		throw new IOException("exception on  work()");
 	}
 }
+
