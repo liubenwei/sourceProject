@@ -15,7 +15,27 @@ public class U2 {
 		return (value[0] & 0xff) << 8 | (value[1] & 0xff);
 	}
 
-	public String toHexString(){
-	    return "0x";
-    }
+	/**
+	 * 把byte转成16进制
+	 * 
+	 * @return
+	 */
+	public String toHexString() {
+		char[] hexChar = new char[] { '0', '1', '2', '3', '4', '5', '6', '7',
+				'8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
+		StringBuilder hexString = new StringBuilder();
+		for (int i = 1; i >= 0; i--) {
+			int v = value[i] & 0xff;
+			while (v > 0) {
+				int c = v % 16;
+				v = v >>> 4;
+				hexString.insert(0, hexChar[c]);
+			}
+			if ((hexString.length() & 01) == 1) {
+				hexString.insert(0, '0');
+			}
+		}
+
+		return "0x" + (hexString.length() == 0 ? "00" : hexString.toString());
+	}
 }

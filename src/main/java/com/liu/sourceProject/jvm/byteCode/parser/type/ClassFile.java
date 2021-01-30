@@ -31,6 +31,7 @@ public class ClassFile {
 	private U2 attributeCount;
 	private AttributeInfo[] attributeInfos;
 
+
 	public U2 getSuperClass() {
 		return superClass;
 	}
