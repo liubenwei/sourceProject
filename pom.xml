@@ -129,6 +129,13 @@
             <version>4.5.12</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+            <version>2.6.7</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.mybatis.dynamic-sql/mybatis-dynamic-sql -->
         <dependency>
             <groupId>org.mybatis.dynamic-sql</groupId>
@@ -146,6 +153,15 @@
         </dependency>
 
     </dependencies>
+<!--    配置仓库的地址-->
+    <repositories>
+        <repository>
+            <id>aliyun</id>
+
+            <name>aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
 
     <build>
         <finalName>spring-boot-demo-zookeeper</finalName>
